@@ -1,4 +1,4 @@
-from ..models.all_models import User, Base, TodoList, Task
+from ..models.all_models import User
 from passlib.hash import bcrypt
 from email_validator import validate_email, EmailNotValidError
 class UserFacade:
