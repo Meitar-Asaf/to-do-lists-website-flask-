@@ -1,5 +1,5 @@
 from .base import Base
-from sqlalchemy import Column, ForeignKey, Integer, String
+from sqlalchemy import Column, ForeignKey, Integer, String, Boolean
 
 
 
@@ -9,3 +9,4 @@ class Task(Base):
     title = Column(String)
     description = Column(String, nullable=True)
     todo_list_id = Column(Integer, ForeignKey('todo_lists.id'), nullable=False)
+    completed = Column(Boolean, default=False)  # 0 for not completed, 1 for completed

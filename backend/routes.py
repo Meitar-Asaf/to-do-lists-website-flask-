@@ -28,18 +28,22 @@ def get_tasks_by_todo_list(todo_list_id):
     } for task in tasks]), 200
 @routes.route('/tasks', methods=['GET'])
 def get_all_tasks():
+    
+    """
+    Retrieves all tasks from the database.
+
+    Returns:
+        list: A list of tasks in JSON format.
+    """
     tasks = task_facade.get_all_tasks()
-    return jsonify(tasks), 200
+    return jsonify([{'id': task.id, 'title': task.title, 'description': task.description, 'todo_list_id': task.todo_list_id, 'completed': task.completed} for task in tasks]), 200
 @routes.route('/tasks/<int:task_id>', methods=['GET'])
 def get_task_by_id(task_id):
     task = task_facade.get_task_by_id(task_id)
     if task is None:
         return jsonify({'message': 'Task not found'}), 404
     return jsonify({
-        'id': task.id,
-        'title': task.title,
-        'description': task.description,
-        'todo_list_id': task.todo_list_id
+        task
     }), 200
 @routes.route('/tasks/<int:task_id>', methods=['DELETE'])
 def delete_task(task_id):

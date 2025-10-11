@@ -104,3 +104,12 @@ class TaskFacade:
             Task | None: The Task object if found, otherwise None.
         """
         return self.session.query(Task).get(task_id)
+    
+    def get_all_tasks(self) -> list[Task]| None:
+        """
+        Retrieves all tasks from the database.
+
+        Returns:
+            list[Task]: A list of all Task objects in the database.
+        """
+        return self.session.query(Task).all()
